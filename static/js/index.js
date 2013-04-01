@@ -1,8 +1,8 @@
 exports.postAceInit = function(hook_name, context){
-  context.ace.callWithAce(function(ace){
-      var doc = ace.ace_getDocument();
-      $(doc).find('#innerdocbody').mousemove(_(exports.showAuthor.hover).bind(ace));
-   }, 'showAuthor', true);
+  context.ace.callWithAce(function(ace){
+    var doc = ace.ace_getDocument();
+    $(doc).find('#innerdocbody').mousemove(_(exports.showAuthor.hover).bind(ace));
+  }, 'showAuthor', true);
 }
 
 var showAuthor = {
