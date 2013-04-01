@@ -64,6 +64,7 @@ var showAuthor = {
     var span = target.target;
     var fontSize = $(span).parent().css('font-size');
     var top = $(span).context.offsetTop -14;
+    if(top < 0) top = $(span).height() +14;
     var left = target.clientX +15;
     $(span).removeAttr("title");
 
