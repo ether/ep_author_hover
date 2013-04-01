@@ -1,3 +1,5 @@
+var _ = require('ep_etherpad-lite/static/js/underscore');
+
 exports.postAceInit = function(hook_name, context){
   context.ace.callWithAce(function(ace){
     var doc = ace.ace_getDocument();
