@@ -1,0 +1,11 @@
+{
+  "parts": [
+  {
+    "name": "ep_author_hover",
+    "hooks" : {
+  },
+    "client_hooks" : {
+      "postAceInit":"ep_author_hover/static/js/index"
+    }
+  }]
+}
