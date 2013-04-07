@@ -17,8 +17,9 @@ var showAuthor = {
   },
   authorIdFromClass: function(className){
     if (className.substring(0, 7) == "author-") {
+      className = className.substring(0,49);
       return className.substring(7).replace(/[a-y0-9]+|-|z.+?z/g, function(cc) {
-      if (cc == '-') { return '.'; }
+        if (cc == '-') { return '.'; }
         else if (cc.charAt(0) == 'z') {
           return String.fromCharCode(Number(cc.slice(1, -1)));
         }
