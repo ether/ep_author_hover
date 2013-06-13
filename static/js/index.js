@@ -1,14 +1,36 @@
 var _ = require('ep_etherpad-lite/static/js/underscore');
 
+var timer = 0;
+
 exports.postAceInit = function(hook_name, context){
-  context.ace.callWithAce(function(ace){
-    var doc = ace.ace_getDocument();
-    $(doc).find('#innerdocbody').mousemove(_(exports.showAuthor.hover).bind(ace));
-  }, 'showAuthor', true);
+  showAuthor.enable(context);
 }
 
 var showAuthor = {
+  enable: function(context){
+    context.ace.callWithAce(function(ace){
+      var doc = ace.ace_getDocument();
+      $(doc).find('#innerdocbody').mousemove(_(exports.showAuthor.hover).bind(ace));
+    }, 'showAuthor', true);
+  },
+  disable: function(context){
+   context.ace.callWithAce(function(ace){
+      var doc = ace.ace_getDocument();
+      $(doc).find('#innerdocbody').mousemove(_().bind(ace));
+    }, 'showAuthor', true);
+  },
   hover: function(span){
+
+    if(timer) { // wait a second before showing!
+      clearTimeout(timer);
+      timer = null;
+    }
+    timer = setTimeout(function(){
+      showAuthor.show(span);
+    }, 1000);
+
+  },
+  show: function(span){
     var authorId = showAuthor.authorIdFromClass(span.target.className); // Get the authorId
     if(!authorId){ return; } // Default text isn't shown
     showAuthor.destroy(); // Destroy existing
