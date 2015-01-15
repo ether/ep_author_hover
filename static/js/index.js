@@ -1,9 +1,37 @@
 var _ = require('ep_etherpad-lite/static/js/underscore');
+var padcookie = require('ep_etherpad-lite/static/js/pad_cookie').padcookie;
 
 var timer = 0;
 
 exports.postAceInit = function(hook_name, context){
   showAuthor.enable(context);
+
+  /* init */
+  if (padcookie.getPref("author-hover") === false) {
+    $('#options-author-hover').val() 
+    $('#options-author-hover').attr('checked','unchecked');
+    $('#options-author-hover').attr('checked',false);
+  }else{
+    $('#options-author-hover').attr('checked','checked');
+  }
+
+  if($('#options-author-hover').is(':checked')) {
+    clientVars.plugins.plugins.ep_author_hover.enabled = true;
+  } else {
+    clientVars.plugins.plugins.ep_author_hover.enabled = false;
+  }
+
+  /* on click */
+  $('#options-author-hover').on('click', function() {
+   if($('#options-author-hover').is(':checked')) {
+      padcookie.setPref("author-hover", true)
+      clientVars.plugins.plugins.ep_author_hover = true;
+    } else {
+      padcookie.setPref("author-hover", false)
+      clientVars.plugins.plugins.ep_author_hover = true;
+    }
+  });
+
 }
 
 var showAuthor = {
@@ -14,7 +42,7 @@ var showAuthor = {
     }, 'showAuthor', true);
   },
   disable: function(context){
-   context.ace.callWithAce(function(ace){
+    context.ace.callWithAce(function(ace){
       var doc = ace.ace_getDocument();
       $(doc).find('#innerdocbody').mousemove(_().bind(ace));
     }, 'showAuthor', true);
@@ -31,11 +59,13 @@ var showAuthor = {
 
   },
   show: function(span){
-    var authorId = showAuthor.authorIdFromClass(span.target.className); // Get the authorId
-    if(!authorId){ return; } // Default text isn't shown
-    showAuthor.destroy(); // Destroy existing
-    var authorNameAndColor = showAuthor.authorNameAndColorFromAuthorId(authorId); // Get the authorName And Color
-    showAuthor.draw(span, authorNameAndColor.name, authorNameAndColor.color);
+    if(clientVars.plugins.plugins.ep_author_hover.enabled){
+      var authorId = showAuthor.authorIdFromClass(span.target.className); // Get the authorId
+      if(!authorId){ return; } // Default text isn't shown
+      showAuthor.destroy(); // Destroy existing
+      var authorNameAndColor = showAuthor.authorNameAndColorFromAuthorId(authorId); // Get the authorName And Color
+      showAuthor.draw(span, authorNameAndColor.name, authorNameAndColor.color);
+    }
   },
   authorIdFromClass: function(className){
     if (className.substring(0, 7) == "author-") {
@@ -52,8 +82,10 @@ var showAuthor = {
     }
   },
   authorNameAndColorFromAuthorId: function(authorId){
+    // todo figure out why we need a substring to fix this
+    authorId = authorId.substring(0,14); // don't ask....  something appears to be fucked in regex
     // It could always be me..
-    var myAuthorId = pad.myUserInfo.userId;
+    var myAuthorId = pad.myUserInfo.userId.substring(0,14);
     if(myAuthorId == authorId){
       return {
         name: "Me",
@@ -64,7 +96,7 @@ var showAuthor = {
     // Not me, let's look up in the DOM
     var authorObj = {};
     $('#otheruserstable > tbody > tr').each(function(){
-      if (authorId == $(this).data("authorid")){
+      if (authorId == $(this).data("authorid").substring(0,14)){
         $(this).find('.usertdname').each( function() {
           authorObj.name = $(this).text();
           if(authorObj.name == "") authorObj.name = "Unknown Author";
