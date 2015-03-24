@@ -82,6 +82,7 @@ var showAuthor = {
     }
   },
   authorNameAndColorFromAuthorId: function(authorId){
+    var fullAuthorId = authorId; // historical data uses full author id without substing
     // todo figure out why we need a substring to fix this
     authorId = authorId.substring(0,14); // don't ask....  something appears to be fucked in regex
     // It could always be me..
@@ -110,7 +111,7 @@ var showAuthor = {
 
     // Else go historical
     if(!authorObj || !authorObj.name){
-      var authorObj = clientVars.collab_client_vars.historicalAuthorData[authorId]; // Try to use historical data
+      var authorObj = clientVars.collab_client_vars.historicalAuthorData[fullAuthorId]; // Try to use historical data
     }
 
     return authorObj || {name: "Unknown Author", color: "#fff"};
