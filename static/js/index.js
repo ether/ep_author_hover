@@ -60,7 +60,7 @@ var showAuthor = {
   },
   show: function(span){
     if(clientVars.plugins.plugins.ep_author_hover.enabled){
-      var authorId = showAuthor.authorIdFromClass(span.target.className); // Get the authorId
+      var authorId = showAuthor.authorIdFromClass($(span.target).closest('span').get(0).className); // Get the authorId
       if(!authorId){ return; } // Default text isn't shown
       showAuthor.destroy(); // Destroy existing
       var authorNameAndColor = showAuthor.authorNameAndColorFromAuthorId(authorId); // Get the authorName And Color
