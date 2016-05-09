@@ -91,7 +91,7 @@ var showAuthor = {
     var myAuthorId = pad.myUserInfo.userId.substring(0,14);
     if(myAuthorId == authorId){
       return {
-        name: "Me",
+        name: window._('ep_author_hover.me'),
         color: "#fff"
       }
     }
@@ -102,7 +102,7 @@ var showAuthor = {
       if (authorId == $(this).data("authorid").substring(0,14)){
         $(this).find('.usertdname').each( function() {
           authorObj.name = $(this).text();
-          if(authorObj.name == "") authorObj.name = "Unknown Author";
+          if(authorObj.name == "") authorObj.name = window._('ep_author_hover.unknow_author');
         });
         $(this).find('.usertdswatch > div').each( function() {
           authorObj.color = $(this).css("background-color");
@@ -116,7 +116,7 @@ var showAuthor = {
       var authorObj = clientVars.collab_client_vars.historicalAuthorData[fullAuthorId]; // Try to use historical data
     }
 
-    return authorObj || {name: "Unknown Author", color: "#fff"};
+    return authorObj || {name: window._('ep_author_hover.unknow_author'), color: "#fff"};
   },
   draw: function(target, authorName, authorColor){
     var span = target.target;
