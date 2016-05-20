@@ -1,98 +1,43 @@
 0 info it worked if it ends with ok
-1 verbose cli [ 'nodejs', '/usr/bin/npm', 'publish' ]
-2 info using npm@1.2.2
-3 info using node@v0.8.18
-4 verbose publish [ '.' ]
-5 verbose read json /home/jose/etherpad-lite/node_modules/ep_author_hover/package.json
-6 verbose cache add [ '.', null ]
-7 verbose cache add name=undefined spec="." args=[".",null]
-8 verbose parsed url { pathname: '.', path: '.', href: '.' }
-9 silly lockFile 3a52ce78- .
-10 verbose lock . /home/jose/.npm/3a52ce78-.lock
-11 verbose read json package.json
-12 verbose tar pack [ '/home/jose/tmp/npm-6831/1364799791709-0.45275176060386/tmp.tgz',
-12 verbose tar pack   '.' ]
-13 verbose tarball /home/jose/tmp/npm-6831/1364799791709-0.45275176060386/tmp.tgz
-14 verbose folder .
-15 info prepublish ep_author_hover@0.0.1
-16 silly lockFile c4e1e25b-9791709-0-45275176060386-tmp-tgz /home/jose/tmp/npm-6831/1364799791709-0.45275176060386/tmp.tgz
-17 verbose lock /home/jose/tmp/npm-6831/1364799791709-0.45275176060386/tmp.tgz /home/jose/.npm/c4e1e25b-9791709-0-45275176060386-tmp-tgz.lock
-18 silly lockFile c4e1e25b-9791709-0-45275176060386-tmp-tgz /home/jose/tmp/npm-6831/1364799791709-0.45275176060386/tmp.tgz
-19 verbose tar unpack /home/jose/tmp/npm-6831/1364799791709-0.45275176060386/tmp.tgz
-20 silly lockFile fa39b574-9791709-0-45275176060386-package /home/jose/tmp/npm-6831/1364799791709-0.45275176060386/package
-21 verbose lock /home/jose/tmp/npm-6831/1364799791709-0.45275176060386/package /home/jose/.npm/fa39b574-9791709-0-45275176060386-package.lock
-22 silly gunzTarPerm modes [ '755', '644' ]
-23 silly gunzTarPerm extractEntry package.json
-24 silly gunzTarPerm extractEntry README.md
-25 silly gunzTarPerm extractEntry .ep_initialized
-26 silly gunzTarPerm extractEntry static/js/index.js
-27 silly gunzTarPerm extractEntry ep.json
-28 verbose read json /home/jose/tmp/npm-6831/1364799791709-0.45275176060386/package/package.json
-29 silly lockFile fa39b574-9791709-0-45275176060386-package /home/jose/tmp/npm-6831/1364799791709-0.45275176060386/package
-30 verbose from cache /home/jose/tmp/npm-6831/1364799791709-0.45275176060386/package/package.json
-31 verbose tar pack [ '/home/jose/.npm/ep_author_hover/0.0.1/package.tgz',
-31 verbose tar pack   '/home/jose/tmp/npm-6831/1364799791709-0.45275176060386/package' ]
-32 verbose tarball /home/jose/.npm/ep_author_hover/0.0.1/package.tgz
-33 verbose folder /home/jose/tmp/npm-6831/1364799791709-0.45275176060386/package
-34 silly lockFile 8d0a19f6-p-author-hover-0-0-1-package-tgz /home/jose/.npm/ep_author_hover/0.0.1/package.tgz
-35 verbose lock /home/jose/.npm/ep_author_hover/0.0.1/package.tgz /home/jose/.npm/8d0a19f6-p-author-hover-0-0-1-package-tgz.lock
-36 silly lockFile 8d0a19f6-p-author-hover-0-0-1-package-tgz /home/jose/.npm/ep_author_hover/0.0.1/package.tgz
-37 silly lockFile 2d4a522e-pm-ep-author-hover-0-0-1-package /home/jose/.npm/ep_author_hover/0.0.1/package
-38 verbose lock /home/jose/.npm/ep_author_hover/0.0.1/package /home/jose/.npm/2d4a522e-pm-ep-author-hover-0-0-1-package.lock
-39 silly lockFile 2d4a522e-pm-ep-author-hover-0-0-1-package /home/jose/.npm/ep_author_hover/0.0.1/package
-40 verbose tar unpack /home/jose/.npm/ep_author_hover/0.0.1/package.tgz
-41 silly lockFile 2d4a522e-pm-ep-author-hover-0-0-1-package /home/jose/.npm/ep_author_hover/0.0.1/package
-42 verbose lock /home/jose/.npm/ep_author_hover/0.0.1/package /home/jose/.npm/2d4a522e-pm-ep-author-hover-0-0-1-package.lock
-43 silly gunzTarPerm modes [ '755', '644' ]
-44 silly gunzTarPerm extractEntry package.json
-45 silly gunzTarPerm extractEntry README.md
-46 silly gunzTarPerm extractEntry .ep_initialized
-47 silly gunzTarPerm extractEntry static/js/index.js
-48 silly gunzTarPerm extractEntry ep.json
-49 verbose read json /home/jose/.npm/ep_author_hover/0.0.1/package/package.json
-50 silly lockFile 2d4a522e-pm-ep-author-hover-0-0-1-package /home/jose/.npm/ep_author_hover/0.0.1/package
-51 silly shasum updated bytes 2269
-52 info shasum 6c3fb6f9ca5b6ef9fdcc42adfc8420f11575c456
-52 info shasum /home/jose/.npm/ep_author_hover/0.0.1/package.tgz
-53 verbose from cache /home/jose/.npm/ep_author_hover/0.0.1/package/package.json
-54 verbose chmod /home/jose/.npm/ep_author_hover/0.0.1/package.tgz 644
-55 verbose chown /home/jose/.npm/ep_author_hover/0.0.1/package.tgz [ 1000, 1000 ]
-56 silly lockFile 3a52ce78- .
-57 silly publish { author:
-57 silly publish    { name: 'John McLear',
-57 silly publish      email: 'john@mclear.co.uk',
-57 silly publish      url: 'http://mclear.co.uk' },
-57 silly publish   name: 'ep_author_hover',
-57 silly publish   description: 'Adds author names to span titles (shows on hover), works as authors change their name.  Hover includes author color and fast switching between author spans.  Hat tip to Martyn York for the initial work on this.',
-57 silly publish   version: '0.0.1',
-57 silly publish   repository:
-57 silly publish    { type: 'git',
-57 silly publish      url: 'git://github.com/johnmclear/ep_authornames_with_activity_indicators.git' },
-57 silly publish   readme: '# Show authorname on hover\n\nHover over an author to see their name\n\n# Other functionality\n\nShows the author color on hover\nSupports fast switching between hovers (Doesn\'t depend on native browser support)\n\n# Why did I rewrite this?\nI don\'t really like plugins that depdend on manipulating the ACE inner DOM, rewriting this plugin and using events meant I could still have hover functionality without the risk of running into nasty ACE issues down the line.  It also meant that as new authors joined and updated their name I could update hte hovers in real time.  Previous attempts at writing this plugin have required a browser refresh to know who authors are, that wasn\'t good enough for me.\n\n# TODO\n\n* use JQTip\n* Your ideas here..\n* Test in IE\n* Settings for font size/background color switch\n* Your sponsorship here..\n',
-57 silly publish   readmeFilename: 'README.md',
-57 silly publish   _id: 'ep_author_hover@0.0.1',
-57 silly publish   dist: { shasum: '6c3fb6f9ca5b6ef9fdcc42adfc8420f11575c456' },
-57 silly publish   _from: '.' }
-58 verbose url raw ep_author_hover
-59 verbose url resolving [ 'https://registry.npmjs.org/', './ep_author_hover' ]
-60 verbose url resolved https://registry.npmjs.org/ep_author_hover
-61 info trying registry request attempt 1 at 08:03:11
-62 http PUT https://registry.npmjs.org/ep_author_hover
-63 http 409 https://registry.npmjs.org/ep_author_hover
-64 verbose url raw ep_author_hover
-65 verbose url resolving [ 'https://registry.npmjs.org/', './ep_author_hover' ]
-66 verbose url resolved https://registry.npmjs.org/ep_author_hover
-67 info trying registry request attempt 1 at 08:03:21
-68 http GET https://registry.npmjs.org/ep_author_hover
-69 http 200 https://registry.npmjs.org/ep_author_hover
-70 error publish fail Cannot publish over existing version.
-70 error publish fail Bump the 'version' field, set the --force flag, or
-70 error publish fail     npm unpublish 'ep_author_hover@0.0.1'
-70 error publish fail and try again
-71 error System Linux 3.5.0-17-generic
-72 error command "nodejs" "/usr/bin/npm" "publish"
-73 error cwd /home/jose/etherpad-lite/node_modules/ep_author_hover
-74 error node -v v0.8.18
-75 error npm -v 1.2.2
-76 error code EPUBLISHCONFLICT
-77 verbose exit [ 1, true ]
+1 verbose cli [ '/usr/local/bin/node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'version',
+1 verbose cli   'patch',
+1 verbose cli   '--no-git' ]
+2 info using npm@2.15.1
+3 info using node@v4.4.4
+4 info git [ 'status', '--porcelain' ]
+5 info preversion ep_author_hover@0.0.16
+6 verbose version.write data { author:
+6 verbose version.write    { name: 'John McLear',
+6 verbose version.write      email: 'john@mclear.co.uk',
+6 verbose version.write      url: 'http://mclear.co.uk' },
+6 verbose version.write   name: 'ep_author_hover',
+6 verbose version.write   description: 'Adds author names to span titles (shows on hover), works as authors change their name.  Hover includes author color and fast switching between author spans.  Hat tip to Martyn York for the initial work on this.',
+6 verbose version.write   version: '0.0.16',
+6 verbose version.write   repository:
+6 verbose version.write    { type: 'git',
+6 verbose version.write      url: 'git@github.com:JohnMcLear/ep_author_hover.git' } } to package.json
+7 info version ep_author_hover@0.0.16
+8 info git [ 'add',
+8 info git   '/home/jose/etherpad-lite/node_modules/ep_author_hover/package.json' ]
+9 verbose stack Error: Command failed: false add /home/jose/etherpad-lite/node_modules/ep_author_hover/package.json
+9 verbose stack
+9 verbose stack     at ChildProcess.exithandler (child_process.js:213:12)
+9 verbose stack     at emitTwo (events.js:87:13)
+9 verbose stack     at ChildProcess.emit (events.js:172:7)
+9 verbose stack     at maybeClose (internal/child_process.js:827:16)
+9 verbose stack     at Socket.<anonymous> (internal/child_process.js:319:11)
+9 verbose stack     at emitOne (events.js:77:13)
+9 verbose stack     at Socket.emit (events.js:169:7)
+9 verbose stack     at Pipe._onclose (net.js:477:12)
+10 verbose cwd /home/jose/etherpad-lite/node_modules/ep_author_hover
+11 error Linux 4.2.0-35-generic
+12 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "version" "patch" "--no-git"
+13 error node v4.4.4
+14 error npm  v2.15.1
+15 error code 1
+16 error Command failed: false add /home/jose/etherpad-lite/node_modules/ep_author_hover/package.json
+17 error If you need help, you may report this error at:
+17 error     <https://github.com/npm/npm/issues>
+18 verbose exit [ 1, true ]

@@ -119,6 +119,10 @@ var showAuthor = {
     return authorObj || {name: window._('ep_author_hover.unknow_author'), color: "#fff"};
   },
   draw: function(target, authorName, authorColor){
+    if(!authorName){
+      console.warn("No authorName, I have no idea why!  Help me debug this by providing steps to replicate!");
+      return;
+    }
     var span = target.target;
     var fontSize = $(span).parent().css('font-size');
     var top = $(span).context.offsetTop -14;
