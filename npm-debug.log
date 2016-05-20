@@ -7,18 +7,18 @@
 2 info using npm@2.15.1
 3 info using node@v4.4.4
 4 info git [ 'status', '--porcelain' ]
-5 info preversion ep_author_hover@0.0.16
+5 info preversion ep_author_hover@0.0.17
 6 verbose version.write data { author:
 6 verbose version.write    { name: 'John McLear',
 6 verbose version.write      email: 'john@mclear.co.uk',
 6 verbose version.write      url: 'http://mclear.co.uk' },
 6 verbose version.write   name: 'ep_author_hover',
 6 verbose version.write   description: 'Adds author names to span titles (shows on hover), works as authors change their name.  Hover includes author color and fast switching between author spans.  Hat tip to Martyn York for the initial work on this.',
-6 verbose version.write   version: '0.0.16',
+6 verbose version.write   version: '0.0.17',
 6 verbose version.write   repository:
 6 verbose version.write    { type: 'git',
 6 verbose version.write      url: 'git@github.com:JohnMcLear/ep_author_hover.git' } } to package.json
-7 info version ep_author_hover@0.0.16
+7 info version ep_author_hover@0.0.17
 8 info git [ 'add',
 8 info git   '/home/jose/etherpad-lite/node_modules/ep_author_hover/package.json' ]
 9 verbose stack Error: Command failed: false add /home/jose/etherpad-lite/node_modules/ep_author_hover/package.json

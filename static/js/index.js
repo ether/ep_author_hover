@@ -5,10 +5,10 @@ var timer = 0;
 
 exports.postAceInit = function(hook_name, context){
   showAuthor.enable(context);
-
+  clientVars.plugins.plugins.ep_author_hover = {};
   /* init */
   if (padcookie.getPref("author-hover") === false) {
-    $('#options-author-hover').val() 
+    $('#options-author-hover').val();
     $('#options-author-hover').attr('checked','unchecked');
     $('#options-author-hover').attr('checked',false);
   }else{
@@ -24,11 +24,11 @@ exports.postAceInit = function(hook_name, context){
   /* on click */
   $('#options-author-hover').on('click', function() {
    if($('#options-author-hover').is(':checked')) {
+      clientVars.plugins.plugins.ep_author_hover.enabled = true;
       padcookie.setPref("author-hover", true)
-      clientVars.plugins.plugins.ep_author_hover = true;
     } else {
       padcookie.setPref("author-hover", false)
-      clientVars.plugins.plugins.ep_author_hover = true;
+      clientVars.plugins.plugins.ep_author_hover.enabled = false;
     }
   });
 
