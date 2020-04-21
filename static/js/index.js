@@ -55,7 +55,7 @@ var showAuthor = {
     }
     timer = setTimeout(function(){
       showAuthor.show(span);
-    }, 1000);
+    }, 2000);
 
   },
   show: function(span){
@@ -137,7 +137,8 @@ var showAuthor = {
       ap = /'/g,
       ic = /"/g;
     authorName = authorName.toString().replace(lt, "&lt;").replace(gt, "&gt;").replace(ap, "&#39;").replace(ic, "&#34;");
-    var $indicator = $("<div class='authortooltip' style='opacity:.8;font-size:14px;padding:5px 5px 0px 5px;position:absolute;left:"+left+"px;top:"+top +"px;background-color:"+authorColor+"' title="+authorName+">"+authorName+"</div>");
+    var $indicator = $("<div class='authortooltip' style='opacity:.8;font-size:14px;padding:5px 5px 0px 5px;position:absolute;left:"+left+"px;top:"+top +"px;background-color:"+authorColor+"' title="+authorName+"></div>");
+    $indicator.text(authorName)
     $(outBody).append($indicator);
 
     // After a while, fade out
