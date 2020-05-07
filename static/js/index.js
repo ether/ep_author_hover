@@ -48,19 +48,18 @@ var showAuthor = {
     }, 'showAuthor', true);
   },
   hover: function(span){
-
     if(timer) { // wait a second before showing!
       clearTimeout(timer);
       timer = null;
     }
     timer = setTimeout(function(){
       showAuthor.show(span);
-    }, 2000);
+    }, 0);
 
   },
   show: function(span){
     if(clientVars.plugins.plugins.ep_author_hover.enabled){
-      var authorTarget = $(span.target).closest('span').get(0);
+      var authorTarget = $(span.target).closest('span')[0];
       if (!authorTarget){ return; } // We might not be over a valid target
       var authorId = showAuthor.authorIdFromClass(authorTarget.className); // Get the authorId
       if(!authorId){ return; } // Default text isn't shown
