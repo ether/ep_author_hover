@@ -136,8 +136,18 @@ var showAuthor = {
       ap = /'/g,
       ic = /"/g;
     authorName = authorName.toString().replace(lt, "&lt;").replace(gt, "&gt;").replace(ap, "&#39;").replace(ic, "&#34;");
-    var $indicator = $("<div class='authortooltip' style='opacity:.8;font-size:14px;padding:5px 5px 0px 5px;position:absolute;left:"+left+"px;top:"+top +"px;background-color:"+authorColor+"' title="+authorName+"></div>");
-    $indicator.text(authorName)
+    var $indicator = $("<div>").attr({
+      class: 'authortooltip',
+      title: authorName,
+    }).css({
+      "opacity": ".8",
+      "font-size": "14px",
+      "padding": "5px 5px 0px 5px",
+      "position": "absolute",
+      "left": left + "px",
+      "top": top + "px",
+      "background-color": authorColor,
+    }).text(authorName);
     $(outBody).append($indicator);
 
     // After a while, fade out
