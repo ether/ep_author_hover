@@ -131,11 +131,6 @@ var showAuthor = {
 
     // TODO use qtip, it will handle edge cases better
     var outBody = $('iframe[name="ace_outer"]').contents().find("body");
-    var lt = /</g,
-      gt = />/g,
-      ap = /'/g,
-      ic = /"/g;
-    authorName = authorName.toString().replace(lt, "&lt;").replace(gt, "&gt;").replace(ap, "&#39;").replace(ic, "&#34;");
     var $indicator = $("<div>").attr({
       class: 'authortooltip',
       title: authorName,
