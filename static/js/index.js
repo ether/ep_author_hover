@@ -54,7 +54,7 @@ var showAuthor = {
     }
     timer = setTimeout(function(){
       showAuthor.show(span);
-    }, 0);
+    }, 1000);
 
   },
   show: function(span){
