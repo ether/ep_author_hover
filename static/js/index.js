@@ -145,7 +145,7 @@ var showAuthor = {
       $indicator.fadeOut(500, function(){
         $indicator.remove();
       });
-    }, 500);
+    }, 700);
   },
   destroy: function(){
     $('iframe[name="ace_outer"]').contents().find(".authortooltip").remove();
