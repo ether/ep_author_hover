@@ -54,7 +54,7 @@ var showAuthor = {
     }
     timer = setTimeout(function(){
       showAuthor.show(span);
-    }, 0);
+    }, 1000);
 
   },
   show: function(span){
@@ -131,6 +131,11 @@ var showAuthor = {
 
     // TODO use qtip, it will handle edge cases better
     var outBody = $('iframe[name="ace_outer"]').contents().find("body");
+    var inFrame = $(outBody).find('iframe[name="ace_inner"]');
+    var inFramePos = inFrame.position();
+    left += inFramePos.left;
+    top += inFramePos.top;
+    
     var $indicator = $("<div>").attr({
       class: 'authortooltip',
       title: authorName,
@@ -143,6 +148,7 @@ var showAuthor = {
       "top": top + "px",
       "background-color": authorColor,
     }).text(authorName);
+    
     $(outBody).append($indicator);
 
     // After a while, fade out
@@ -150,7 +156,7 @@ var showAuthor = {
       $indicator.fadeOut(500, function(){
         $indicator.remove();
       });
-    }, 500);
+    }, 700);
   },
   destroy: function(){
     $('iframe[name="ace_outer"]').contents().find(".authortooltip").remove();
