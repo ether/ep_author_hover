@@ -131,6 +131,12 @@ var showAuthor = {
 
     // TODO use qtip, it will handle edge cases better
     var outBody = $('iframe[name="ace_outer"]').contents().find("body");
+
+    var inFrame = $(outBody).find('iframe[name="ace_inner"]');
+    var inFramePos = inFrame.position();
+    left += inFramePos.left;
+    top += inFramePos.top;
+
     var lt = /</g,
       gt = />/g,
       ap = /'/g,
