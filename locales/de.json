@@ -1,5 +1,8 @@
 {
-  "ep_author_hover.me": "Ich",
-  "ep_author_hover.unknow_author": "Unbekannter Autor",
-  "ep_author_hover.showHoverLabel" : "Autor beim Hovern anzeigen"
+	"@metadata": {
+		"authors": []
+	},
+	"ep_author_hover.me": "Ich",
+	"ep_author_hover.unknow_author": "Unbekannter Autor",
+	"ep_author_hover.showHoverLabel": "Autor beim Hovern anzeigen"
 }
