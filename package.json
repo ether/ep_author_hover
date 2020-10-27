@@ -10,5 +10,9 @@
   "repository": {
     "type": "git",
     "url": "git@github.com:JohnMcLear/ep_author_hover.git"
+  },
+  "funding": {
+    "type": "individual",
+    "url": "http://etherpad.org/"
   }
 }
