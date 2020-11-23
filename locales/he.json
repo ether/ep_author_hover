@@ -4,5 +4,7 @@
 			"YaronSh"
 		]
 	},
-	"ep_author_hover.me": "אני"
+	"ep_author_hover.me": "אני",
+	"ep_author_hover.unknow_author": "יוצר לא ידוע",
+	"ep_author_hover.showHoverLabel": "הצגת היוצרים עם מעבר מעל השם"
 }
