@@ -1,52 +1,23 @@
-var _ = require('ep_etherpad-lite/static/js/underscore');
-var padcookie = require('ep_etherpad-lite/static/js/pad_cookie').padcookie;
+'use strict';
+const _ = require('ep_etherpad-lite/static/js/underscore');
+const padcookie = require('ep_etherpad-lite/static/js/pad_cookie').padcookie;
 
-var timer = 0;
+let timer = 0;
 
-exports.postAceInit = function (hook_name, context) {
-  showAuthor.enable(context);
-  clientVars.plugins.plugins.ep_author_hover = {};
-  /* init */
-  if (padcookie.getPref('author-hover') === false) {
-    $('#options-author-hover').val();
-    $('#options-author-hover').attr('checked', 'unchecked');
-    $('#options-author-hover').attr('checked', false);
-  } else {
-    $('#options-author-hover').attr('checked', 'checked');
-  }
-
-  if ($('#options-author-hover').is(':checked')) {
-    clientVars.plugins.plugins.ep_author_hover.enabled = true;
-  } else {
-    clientVars.plugins.plugins.ep_author_hover.enabled = false;
-  }
-
-  /* on click */
-  $('#options-author-hover').on('click', () => {
-    if ($('#options-author-hover').is(':checked')) {
-      clientVars.plugins.plugins.ep_author_hover.enabled = true;
-      padcookie.setPref('author-hover', true);
-    } else {
-      padcookie.setPref('author-hover', false);
-      clientVars.plugins.plugins.ep_author_hover.enabled = false;
-    }
-  });
-};
-
-var showAuthor = {
-  enable(context) {
+const showAuthor = {
+  enable: (context) => {
     context.ace.callWithAce((ace) => {
       const doc = ace.ace_getDocument();
       $(doc).find('#innerdocbody').mousemove(_(exports.showAuthor.hover).bind(ace));
     }, 'showAuthor', true);
   },
-  disable(context) {
+  disable: (context) => {
     context.ace.callWithAce((ace) => {
       const doc = ace.ace_getDocument();
       $(doc).find('#innerdocbody').mousemove(_().bind(ace));
     }, 'showAuthor', true);
   },
-  hover(span) {
+  hover: (span) => {
     if (timer) { // wait a second before showing!
       clearTimeout(timer);
       timer = null;
@@ -55,22 +26,23 @@ var showAuthor = {
       showAuthor.show(span);
     }, 1000);
   },
-  show(span) {
+  show: (span) => {
     if (clientVars.plugins.plugins.ep_author_hover.enabled) {
       const authorTarget = $(span.target).closest('span')[0];
       if (!authorTarget) { return; } // We might not be over a valid target
       const authorId = showAuthor.authorIdFromClass(authorTarget.className); // Get the authorId
       if (!authorId) { return; } // Default text isn't shown
       showAuthor.destroy(); // Destroy existing
-      const authorNameAndColor = showAuthor.authorNameAndColorFromAuthorId(authorId); // Get the authorName And Color
+      const authorNameAndColor =
+      showAuthor.authorNameAndColorFromAuthorId(authorId); // Get the authorName And Color
       showAuthor.draw(span, authorNameAndColor.name, authorNameAndColor.color);
     }
   },
-  authorIdFromClass(className) {
-    if (className.substring(0, 7) == 'author-') {
+  authorIdFromClass: (className) => {
+    if (className.substring(0, 7) === 'author-') {
       className = className.substring(0, 49);
       return className.substring(7).replace(/[a-y0-9]+|-|z.+?z/g, (cc) => {
-        if (cc == '-') { return '.'; } else if (cc.charAt(0) == 'z') {
+        if (cc === '-') { return '.'; } else if (cc.charAt(0) === 'z') {
           return String.fromCharCode(Number(cc.slice(1, -1)));
         } else {
           return cc;
@@ -78,13 +50,13 @@ var showAuthor = {
       });
     }
   },
-  authorNameAndColorFromAuthorId(authorId) {
+  authorNameAndColorFromAuthorId: (authorId) => {
     const fullAuthorId = authorId; // historical data uses full author id without substing
     // todo figure out why we need a substring to fix this
     authorId = authorId.substring(0, 14); // don't ask....  something appears to be fucked in regex
     // It could always be me..
     const myAuthorId = pad.myUserInfo.userId.substring(0, 14);
-    if (myAuthorId == authorId) {
+    if (myAuthorId === authorId) {
       return {
         name: window._('ep_author_hover.me'),
         color: '#fff',
@@ -92,12 +64,12 @@ var showAuthor = {
     }
 
     // Not me, let's look up in the DOM
-    var authorObj = {};
+    let authorObj = {};
     $('#otheruserstable > tbody > tr').each(function () {
-      if (authorId == $(this).data('authorid').substring(0, 14)) {
+      if (authorId === $(this).data('authorid').substring(0, 14)) {
         $(this).find('.usertdname').each(function () {
           authorObj.name = $(this).text();
-          if (authorObj.name == '') authorObj.name = window._('ep_author_hover.unknow_author');
+          if (authorObj.name === '') authorObj.name = window._('ep_author_hover.unknow_author');
         });
         $(this).find('.usertdswatch > div').each(function () {
           authorObj.color = $(this).css('background-color');
@@ -108,18 +80,20 @@ var showAuthor = {
 
     // Else go historical
     if (!authorObj || !authorObj.name) {
-      var authorObj = clientVars.collab_client_vars.historicalAuthorData[fullAuthorId]; // Try to use historical data
+      // Try to use historical data
+      authorObj = clientVars.collab_client_vars.historicalAuthorData[fullAuthorId];
     }
 
     return authorObj || {name: window._('ep_author_hover.unknow_author'), color: '#fff'};
   },
-  draw(target, authorName, authorColor) {
+  draw: (target, authorName, authorColor) => {
     if (!authorName) {
-      console.warn('No authorName, I have no idea why!  Help me debug this by providing steps to replicate!');
+      const warning =
+      'No authorName, I have no idea why!  Help me debug this by providing steps to replicate!';
+      console.warn(warning);
       return;
     }
     const span = target.target;
-    const fontSize = $(span).parent().css('font-size');
     let top = span.offsetTop - 14;
     if (top < 0) top = $(span).height() + 14;
     let left = target.clientX + 15;
@@ -154,9 +128,39 @@ var showAuthor = {
       });
     }, 700);
   },
-  destroy() {
+  destroy: () => {
     $('iframe[name="ace_outer"]').contents().find('.authortooltip').remove();
   },
+};
+
+exports.postAceInit = (hookName, context) => {
+  showAuthor.enable(context);
+  clientVars.plugins.plugins.ep_author_hover = {};
+  /* init */
+  if (padcookie.getPref('author-hover') === false) {
+    $('#options-author-hover').val();
+    $('#options-author-hover').attr('checked', 'unchecked');
+    $('#options-author-hover').attr('checked', false);
+  } else {
+    $('#options-author-hover').attr('checked', 'checked');
+  }
+
+  if ($('#options-author-hover').is(':checked')) {
+    clientVars.plugins.plugins.ep_author_hover.enabled = true;
+  } else {
+    clientVars.plugins.plugins.ep_author_hover.enabled = false;
+  }
+
+  /* on click */
+  $('#options-author-hover').on('click', () => {
+    if ($('#options-author-hover').is(':checked')) {
+      clientVars.plugins.plugins.ep_author_hover.enabled = true;
+      padcookie.setPref('author-hover', true);
+    } else {
+      padcookie.setPref('author-hover', false);
+      clientVars.plugins.plugins.ep_author_hover.enabled = false;
+    }
+  });
 };
 
 exports.showAuthor = showAuthor;
