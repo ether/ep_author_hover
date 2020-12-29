@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Maantietäjä"
+		]
+	},
+	"ep_author_hover.me": "Minä",
+	"ep_author_hover.unknow_author": "Tuntematon kirjailija",
+	"ep_author_hover.showHoverLabel": "Näytä kirjoittaja hiirellä"
+}
