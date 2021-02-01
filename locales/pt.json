@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Guilha"
+		]
+	},
+	"ep_author_hover.me": "Eu",
+	"ep_author_hover.unknow_author": "Autor desconhecido",
+	"ep_author_hover.showHoverLabel": "Mostrar autor ao passar o rato"
+}
