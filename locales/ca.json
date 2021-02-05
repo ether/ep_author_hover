@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Mguix"
+		]
+	},
+	"ep_author_hover.me": "Jo",
+	"ep_author_hover.unknow_author": "Autor desconegut",
+	"ep_author_hover.showHoverLabel": "Mostra l'autor en passar per sobre"
+}

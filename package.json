@@ -6,9 +6,37 @@
   },
   "name": "ep_author_hover",
   "description": "Adds author names to span titles (shows on hover), works as authors change their name.  Hover includes author color and fast switching between author spans.  Hat tip to Martyn York for the initial work on this.",
-  "version": "0.3.0",
+  "version": "0.3.12",
   "repository": {
     "type": "git",
     "url": "git@github.com:JohnMcLear/ep_author_hover.git"
+  },
+  "funding": {
+    "type": "individual",
+    "url": "http://etherpad.org/"
+  },
+  "devDependencies": {
+    "eslint": "^7.18.0",
+    "eslint-config-etherpad": "^1.0.24",
+    "eslint-plugin-eslint-comments": "^3.2.0",
+    "eslint-plugin-mocha": "^8.0.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prefer-arrow": "^1.2.3",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-you-dont-need-lodash-underscore": "^6.10.0"
+  },
+  "eslintConfig": {
+    "root": true,
+    "extends": "etherpad/plugin"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix ."
+  },
+  "engines": {
+    "node": ">=10.13.0"
+  },
+  "peerDependencies": {
+    "ep_etherpad-lite": ">=1.8.6"
   }
 }

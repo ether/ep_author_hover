@@ -1,5 +1,10 @@
 {
-  "ep_author_hover.me": "Moi",
-  "ep_author_hover.unknow_author": "Auteur inconnu",
-  "ep_author_hover.showHoverLabel" : "Afficher l'auteur en surimpression"
+	"@metadata": {
+		"authors": [
+			"Verdy p"
+		]
+	},
+	"ep_author_hover.me": "Moi",
+	"ep_author_hover.unknow_author": "Auteur inconnu",
+	"ep_author_hover.showHoverLabel": "Afficher l’auteur au survol"
 }
