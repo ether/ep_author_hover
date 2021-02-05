@@ -1,5 +1,5 @@
 'use strict';
-const _ = require('ep_etherpad-lite/static/js/underscore');
+
 const padcookie = require('ep_etherpad-lite/static/js/pad_cookie').padcookie;
 
 let timer = 0;
@@ -8,13 +8,13 @@ const showAuthor = {
   enable: (context) => {
     context.ace.callWithAce((ace) => {
       const doc = ace.ace_getDocument();
-      $(doc).find('#innerdocbody').mousemove(_(exports.showAuthor.hover).bind(ace));
+      $(doc).find('#innerdocbody').mousemove(exports.showAuthor.hover.bind(ace));
     }, 'showAuthor', true);
   },
   disable: (context) => {
     context.ace.callWithAce((ace) => {
       const doc = ace.ace_getDocument();
-      $(doc).find('#innerdocbody').mousemove(_().bind(ace));
+      $(doc).find('#innerdocbody').mousemove(null.bind(ace));
     }, 'showAuthor', true);
   },
   hover: (span) => {
