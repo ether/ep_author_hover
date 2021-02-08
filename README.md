@@ -1,5 +1,5 @@
-![Publish Status](https://github.com/ether/ep_author_hover/workflows/Node.js%20Package/badge.svg) ![Publish Status](https://github.com/ether/ep_author_hover/workflows/Node.js%20Package/badge.svg)
-# Show authorname on hover
+
+# Show Author Name on hover
 
 Hover over an author to see their name
 
