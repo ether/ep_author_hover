@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Spotter"
+		]
+	},
+	"ep_author_hover.me": "Já",
+	"ep_author_hover.unknow_author": "Neznámý autor",
+	"ep_author_hover.showHoverLabel": "Zobrazit autora při najetí myší"
+}
