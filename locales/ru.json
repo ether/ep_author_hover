@@ -1,8 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Megakott"
+			"Megakott",
+			"Okras"
 		]
 	},
-	"ep_author_hover.unknow_author": "Неизвестный автор"
+	"ep_author_hover.me": "Я",
+	"ep_author_hover.unknow_author": "Неизвестный автор",
+	"ep_author_hover.showHoverLabel": "Показывать автора при наведении"
 }
