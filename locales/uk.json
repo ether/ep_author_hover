@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"DDPAT"
+		]
+	},
+	"ep_author_hover.me": "Я",
+	"ep_author_hover.unknow_author": "Невідомий автор",
+	"ep_author_hover.showHoverLabel": "Показувати автора при наведенні"
+}
