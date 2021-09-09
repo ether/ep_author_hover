@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Greatder",
+			"আফতাবুজ্জামান"
+		]
+	},
+	"ep_author_hover.me": "আমি",
+	"ep_author_hover.unknow_author": "অজানা লেখক",
+	"ep_author_hover.showHoverLabel": "কার্সর আনলে লেখকের নাম দেখান"
+}
