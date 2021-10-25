@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"列维劳德"
+		]
+	},
+	"ep_author_hover.me": "我",
+	"ep_author_hover.unknow_author": "未知作者",
+	"ep_author_hover.showHoverLabel": "悬停展示作者"
+}
