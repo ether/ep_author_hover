@@ -1,9 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Ykhwong"
+			"Ykhwong",
+			"그냥기여자"
 		]
 	},
 	"ep_author_hover.me": "나",
-	"ep_author_hover.unknow_author": "알 수 없는 저자"
+	"ep_author_hover.unknow_author": "알 수 없는 저자",
+	"ep_author_hover.showHoverLabel": "마우스를 올렸을 때 저자 표시"
 }
