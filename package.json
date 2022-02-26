@@ -6,7 +6,7 @@
   },
   "name": "ep_author_hover",
   "description": "Adds author names to span titles (shows on hover), works as authors change their name.  Hover includes author color and fast switching between author spans.  Hat tip to Martyn York for the initial work on this.",
-  "version": "0.3.32",
+  "version": "0.3.33",
   "repository": {
     "type": "git",
     "url": "git@github.com:JohnMcLear/ep_author_hover.git"
