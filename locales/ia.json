@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"McDutchie"
+		]
+	},
+	"ep_author_hover.me": "Io",
+	"ep_author_hover.unknow_author": "Autor incognite",
+	"ep_author_hover.showHoverLabel": "Monstrar autor al passar le mouse"
+}
