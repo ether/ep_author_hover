@@ -1,8 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"Robby"
+			"Robby",
+			"Volvox"
 		]
 	},
+	"ep_author_hover.me": "Ech",
 	"ep_author_hover.unknow_author": "Onbekannten Auteur"
 }
