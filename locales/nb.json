@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Jon Harald Søby"
+		]
+	},
+	"ep_author_hover.me": "Meg",
+	"ep_author_hover.unknow_author": "Ukjent forfatter",
+	"ep_author_hover.showHoverLabel": "Vis forfatter når man holder pekeren over teksten"
+}
