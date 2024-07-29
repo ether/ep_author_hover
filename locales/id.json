@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Atriwidada"
+		]
+	},
+	"ep_author_hover.me": "Saya",
+	"ep_author_hover.unknow_author": "Penulis Tidak Diketahui",
+	"ep_author_hover.showHoverLabel": "Tampilkan Penulis saat Mengapung"
+}
