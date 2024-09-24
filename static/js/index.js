@@ -1,20 +1,19 @@
 'use strict';
 
 const padcookie = require('ep_etherpad-lite/static/js/pad_cookie').padcookie;
+import html10n from 'ep_etherpad-lite/static/js/vendors/html10n'
 
 let timer = 0;
 
 const showAuthor = {
-  enable: (context) => {
-    context.ace.callWithAce((ace) => {
-      const doc = ace.ace_getDocument();
-      $(doc).find('#innerdocbody').mousemove(exports.showAuthor.hover.bind(ace));
-    }, 'showAuthor', true);
+  enable: () => {
+    $('iframe[name="ace_outer"]').contents().find('iframe')
+      .contents().find('#innerdocbody').on('mousemove',exports.showAuthor.hover);
   },
   disable: (context) => {
     context.ace.callWithAce((ace) => {
       const doc = ace.ace_getDocument();
-      $(doc).find('#innerdocbody').mousemove(null.bind(ace));
+      $(doc).find('#innerdocbody').on('mousemove',null.bind(ace));
     }, 'showAuthor', true);
   },
   hover: (span) => {
@@ -34,7 +33,7 @@ const showAuthor = {
       if (!authorId) { return; } // Default text isn't shown
       showAuthor.destroy(); // Destroy existing
       const authorNameAndColor =
-      showAuthor.authorNameAndColorFromAuthorId(authorId); // Get the authorName And Color
+        showAuthor.authorNameAndColorFromAuthorId(authorId); // Get the authorName And Color
       showAuthor.draw(span, authorNameAndColor.name, authorNameAndColor.color);
     }
   },
@@ -57,7 +56,7 @@ const showAuthor = {
     const myAuthorId = pad.myUserInfo.userId.substring(0, 14);
     if (myAuthorId === authorId) {
       return {
-        name: window._('ep_author_hover.me'),
+        name: html10n.get('ep_author_hover.me'),
         color: '#fff',
       };
     }
@@ -68,7 +67,7 @@ const showAuthor = {
       if (authorId === $(this).data('authorid').substring(0, 14)) {
         $(this).find('.usertdname').each(function () {
           authorObj.name = $(this).text();
-          if (authorObj.name === '') authorObj.name = window._('ep_author_hover.unknow_author');
+          if (authorObj.name === '') authorObj.name = html10n.get('ep_author_hover.unknow_author');
         });
         $(this).find('.usertdswatch > div').each(function () {
           authorObj.color = $(this).css('background-color');
@@ -83,12 +82,12 @@ const showAuthor = {
       authorObj = clientVars.collab_client_vars.historicalAuthorData[fullAuthorId];
     }
 
-    return authorObj || {name: window._('ep_author_hover.unknow_author'), color: '#fff'};
+    return authorObj || {name: html10n.get('ep_author_hover.unknow_author'), color: '#fff'};
   },
   draw: (target, authorName, authorColor) => {
     if (!authorName) {
       const warning =
-      'No authorName, I have no idea why!  Help me debug this by providing steps to replicate!';
+        'No authorName, I have no idea why!  Help me debug this by providing steps to replicate!';
       console.warn(warning);
       return;
     }
@@ -144,11 +143,7 @@ exports.postAceInit = (hookName, context) => {
     $('#options-author-hover').attr('checked', 'checked');
   }
 
-  if ($('#options-author-hover').is(':checked')) {
-    clientVars.plugins.plugins.ep_author_hover.enabled = true;
-  } else {
-    clientVars.plugins.plugins.ep_author_hover.enabled = false;
-  }
+  clientVars.plugins.plugins.ep_author_hover.enabled = !!$('#options-author-hover').is(':checked');
 
   /* on click */
   $('#options-author-hover').on('click', () => {
