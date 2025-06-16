@@ -1,9 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
+			"Jimkats",
 			"Norhorn"
 		]
 	},
+	"ep_author_hover.me": "Εγώ",
 	"ep_author_hover.unknow_author": "Άγνωστος συγγραφέας",
 	"ep_author_hover.showHoverLabel": "Εμφάνιση συγγραφέα στο Hover"
 }
