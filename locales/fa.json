@@ -5,5 +5,6 @@
 		]
 	},
 	"ep_author_hover.me": "من",
-	"ep_author_hover.unknow_author": "نویسندهٔ ناشناس"
+	"ep_author_hover.unknow_author": "نویسندهٔ ناشناس",
+	"ep_author_hover.showHoverLabel": "نمایش نویسنده هنگام قرار گرفتن نشانگر"
 }
