@@ -1,9 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
+			"Albano",
 			"Beta16"
 		]
 	},
 	"ep_author_hover.me": "Me",
-	"ep_author_hover.unknow_author": "Autore sconosciuto"
+	"ep_author_hover.unknow_author": "Autore sconosciuto",
+	"ep_author_hover.showHoverLabel": "Mostra l'autore al passaggio del mouse"
 }
