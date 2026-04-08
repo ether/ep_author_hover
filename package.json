@@ -9,7 +9,7 @@
   "version": "1.0.25",
   "repository": {
     "type": "git",
-    "url": "git@github.com:JohnMcLear/ep_author_hover.git"
+    "url": "https://github.com/ether/ep_author_hover.git"
   },
   "funding": {
     "type": "individual",
