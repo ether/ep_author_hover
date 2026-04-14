@@ -137,10 +137,10 @@ exports.postAceInit = (hookName, context) => {
   /* init */
   if (padcookie.getPref('author-hover') === false) {
     $('#options-author-hover').val();
-    $('#options-author-hover').attr('checked', 'unchecked');
-    $('#options-author-hover').attr('checked', false);
+    $('#options-author-hover').prop('checked', false);
+    $('#options-author-hover').prop('checked', false);
   } else {
-    $('#options-author-hover').attr('checked', 'checked');
+    $('#options-author-hover').prop('checked', true);
   }
 
   clientVars.plugins.plugins.ep_author_hover.enabled = !!$('#options-author-hover').is(':checked');
