@@ -1,10 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Ghose"
+			"Ghose",
+			"Toliño"
 		]
 	},
 	"ep_author_hover.me": "Eu",
 	"ep_author_hover.unknow_author": "Editora descoñecida",
-	"ep_author_hover.showHoverLabel": "Mostra Editora ao pasar o punteiro"
+	"ep_author_hover.showHoverLabel": "Mostra editora ao pasar o cursor"
 }
