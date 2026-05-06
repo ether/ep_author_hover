@@ -28,7 +28,8 @@ const showAuthor = {
   show: (span) => {
     if (clientVars.plugins.plugins.ep_author_hover.enabled) {
       const authorTarget = $(span.target).closest('span')[0];
-      if (!authorTarget) { return; } // We might not be over a valid target
+      if (!authorTarget) return; // We might not be over a valid target
+      // Find the nearest span with an author class (may be target itself or a parent/child)
       const authorId = showAuthor.authorIdFromClass(authorTarget.className); // Get the authorId
       if (!authorId) { return; } // Default text isn't shown
       showAuthor.destroy(); // Destroy existing
@@ -38,8 +39,15 @@ const showAuthor = {
     }
   },
   authorIdFromClass: (className) => {
-    if (className.substring(0, 7) === 'author-') {
-      return className.substring(7).replace(/[a-y0-9]+|-|z.+?z/g, (cc) => {
+    // className may contain multiple classes (e.g. "comment c-123 author-a.xyz").
+    // Find the one starting with "author-".
+    const classes = className.split(/\s+/);
+    let authorClass = null;
+    for (const cls of classes) {
+      if (cls.indexOf('author-') === 0) { authorClass = cls; break; }
+    }
+    if (authorClass) {
+      return authorClass.substring(7).replace(/[a-y0-9]+|-|z.+?z/g, (cc) => {
         if (cc === '-') { return '.'; } else if (cc.charAt(0) === 'z') {
           return String.fromCharCode(Number(cc.slice(1, -1)));
         } else {
