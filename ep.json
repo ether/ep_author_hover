@@ -1,12 +1,17 @@
 {
   "parts": [
-  {
-    "name": "ep_author_hover",
-    "hooks" : {
-      "eejsBlock_mySettings": "ep_author_hover/index"
-    },
-    "client_hooks" : {
-      "postAceInit":"ep_author_hover/static/js/index"
+    {
+      "name": "ep_author_hover",
+      "hooks": {
+        "loadSettings": "ep_author_hover/index",
+        "clientVars": "ep_author_hover/index",
+        "eejsBlock_mySettings": "ep_author_hover/index",
+        "eejsBlock_padSettings": "ep_author_hover/index"
+      },
+      "client_hooks": {
+        "postAceInit": "ep_author_hover/static/js/index",
+        "handleClientMessage_CLIENT_MESSAGE": "ep_author_hover/static/js/index:handleClientMessage_CLIENT_MESSAGE"
+      }
     }
-  }]
+  ]
 }

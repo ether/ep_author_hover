@@ -9,7 +9,7 @@ importers:
   .:
     dependencies:
       ep_plugin_helpers:
-        specifier: ^0.5.0
+        specifier: ^0.5.2
         version: 0.5.2
     devDependencies:
       eslint:
