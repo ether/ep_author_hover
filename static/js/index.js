@@ -1,19 +1,35 @@
 'use strict';
 
-const padcookie = require('ep_etherpad-lite/static/js/pad_cookie').padcookie;
-import html10n from 'ep_etherpad-lite/static/js/vendors/html10n'
+// Sub-path import keeps the client bundle clean — the top-level
+// `ep_plugin_helpers` index pulls in server-only modules.
+const {padToggle} = require('ep_plugin_helpers/pad-toggle');
+import html10n from 'ep_etherpad-lite/static/js/vendors/html10n';
+
+// Same config as the server-side instance — must agree on pluginName,
+// settingId, l10nId, and defaultLabel so checkbox ids and clientVars line up.
+const authorHoverToggle = padToggle({
+  pluginName: 'ep_author_hover',
+  settingId: 'author-hover',
+  l10nId: 'ep_author_hover.showHoverLabel',
+  defaultLabel: 'Show Author on Hover',
+  defaultEnabled: true,
+});
+
+// Re-export so the helper sees pad-wide broadcasts and refreshes our state
+// when another user toggles the pad-wide checkbox.
+exports.handleClientMessage_CLIENT_MESSAGE = authorHoverToggle.handleClientMessage_CLIENT_MESSAGE;
 
 let timer = 0;
 
 const showAuthor = {
   enable: () => {
     $('iframe[name="ace_outer"]').contents().find('iframe')
-      .contents().find('#innerdocbody').on('mousemove',exports.showAuthor.hover);
+        .contents().find('#innerdocbody').on('mousemove', exports.showAuthor.hover);
   },
   disable: (context) => {
     context.ace.callWithAce((ace) => {
       const doc = ace.ace_getDocument();
-      $(doc).find('#innerdocbody').on('mousemove',null.bind(ace));
+      $(doc).find('#innerdocbody').on('mousemove', null.bind(ace));
     }, 'showAuthor', true);
   },
   hover: (span) => {
@@ -33,7 +49,7 @@ const showAuthor = {
       if (!authorId) { return; } // Default text isn't shown
       showAuthor.destroy(); // Destroy existing
       const authorNameAndColor =
-        showAuthor.authorNameAndColorFromAuthorId(authorId); // Get the authorName And Color
+          showAuthor.authorNameAndColorFromAuthorId(authorId);
       showAuthor.draw(span, authorNameAndColor.name, authorNameAndColor.color);
     }
   },
@@ -133,27 +149,17 @@ const showAuthor = {
 
 exports.postAceInit = (hookName, context) => {
   showAuthor.enable(context);
-  clientVars.plugins.plugins.ep_author_hover = {};
-  /* init */
-  if (padcookie.getPref('author-hover') === false) {
-    $('#options-author-hover').val();
-    $('#options-author-hover').prop('checked', false);
-    $('#options-author-hover').prop('checked', false);
-  } else {
-    $('#options-author-hover').prop('checked', true);
+  // Pre-existing public API: showAuthor.show() reads
+  // clientVars.plugins.plugins.ep_author_hover.enabled on every hover. Keep
+  // the field populated as the toggle changes so external integrations
+  // (and our own show() code) see the live state without rewiring.
+  if (!clientVars.plugins.plugins.ep_author_hover) {
+    clientVars.plugins.plugins.ep_author_hover = {};
   }
-
-  clientVars.plugins.plugins.ep_author_hover.enabled = !!$('#options-author-hover').is(':checked');
-
-  /* on click */
-  $('#options-author-hover').on('click', () => {
-    if ($('#options-author-hover').is(':checked')) {
-      clientVars.plugins.plugins.ep_author_hover.enabled = true;
-      padcookie.setPref('author-hover', true);
-    } else {
-      padcookie.setPref('author-hover', false);
-      clientVars.plugins.plugins.ep_author_hover.enabled = false;
-    }
+  authorHoverToggle.init({
+    onChange: (enabled) => {
+      clientVars.plugins.plugins.ep_author_hover.enabled = enabled;
+    },
   });
 };
 
