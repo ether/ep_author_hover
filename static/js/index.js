@@ -56,8 +56,13 @@ const showAuthor = {
       if (!authorTarget) { return; } // We might not be over a valid target
       const authorId = showAuthor.authorIdFromClass(authorTarget.className); // Get the authorId
       if (!authorId) { return; } // Default text isn't shown
-      if (authorId === SYSTEM_AUTHOR_ID) { return; } // Not written by anyone
+      // Clear any still-visible tooltip from the previous hover BEFORE the
+      // system-author bail-out below: tooltips linger for ~1.2s while they
+      // fade, so returning early without destroying would leave the previous
+      // author's label on screen while the pointer sits over text nobody
+      // wrote.
       showAuthor.destroy(); // Destroy existing
+      if (authorId === SYSTEM_AUTHOR_ID) { return; } // Not written by anyone
       const authorNameAndColor =
           showAuthor.authorNameAndColorFromAuthorId(authorId);
       showAuthor.draw(span, authorNameAndColor.name, authorNameAndColor.color);
