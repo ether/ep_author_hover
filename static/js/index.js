@@ -21,6 +21,15 @@ exports.handleClientMessage_CLIENT_MESSAGE = authorHoverToggle.handleClientMessa
 
 let timer = 0;
 
+// Etherpad attributes inserts to this reserved id when no real author made
+// them: the default pad content written on pad creation, HTTP API
+// setText/appendText/setHTML calls without an authorId, server-side imports.
+// It is changeset bookkeeping rather than a contributor — core deliberately
+// keeps it out of historicalAuthorData and listAuthorsOfPad — so hovering
+// such text fell through to "Unknown Author". Nobody wrote it, so show
+// nothing at all. See ether/etherpad#8044.
+const SYSTEM_AUTHOR_ID = 'a.etherpad-system';
+
 const showAuthor = {
   enable: () => {
     $('iframe[name="ace_outer"]').contents().find('iframe')
@@ -47,6 +56,7 @@ const showAuthor = {
       if (!authorTarget) { return; } // We might not be over a valid target
       const authorId = showAuthor.authorIdFromClass(authorTarget.className); // Get the authorId
       if (!authorId) { return; } // Default text isn't shown
+      if (authorId === SYSTEM_AUTHOR_ID) { return; } // Not written by anyone
       showAuthor.destroy(); // Destroy existing
       const authorNameAndColor =
           showAuthor.authorNameAndColorFromAuthorId(authorId);

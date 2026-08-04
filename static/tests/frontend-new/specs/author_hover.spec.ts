@@ -1,5 +1,10 @@
 import {expect, test} from '@playwright/test';
-import {goToNewPad} from 'ep_etherpad-lite/tests/frontend-new/helper/padHelper';
+import {
+  getPadBody,
+  getPadOuter,
+  goToNewPad,
+  writeToPad,
+} from 'ep_etherpad-lite/tests/frontend-new/helper/padHelper';
 
 test.beforeEach(async ({page}) => {
   await goToNewPad(page);
@@ -36,5 +41,37 @@ test.describe('ep_author_hover', () => {
     // hook; its checkbox is identified by id="options-author-hover".
     await expect(page.locator('#options-author-hover')).toBeAttached();
     await expect(page.locator('label[for="options-author-hover"]')).toBeAttached();
+  });
+
+  // The tooltip is drawn 1s after the mousemove and fades out ~1.2s later, so
+  // poll for it rather than sampling at a fixed instant.
+  const tooltipTextAfterHover = async (
+    page: import('@playwright/test').Page,
+    target: import('@playwright/test').Locator,
+  ): Promise<string|null> => {
+    await target.hover();
+    const tooltip = (await getPadOuter(page)).locator('.authortooltip');
+    for (let i = 0; i < 40; i++) {
+      if (await tooltip.count()) return (await tooltip.first().innerText()).trim();
+      await page.waitForTimeout(100);
+    }
+    return null;
+  };
+
+  test('shows a tooltip over your own writing', async ({page}) => {
+    const body = await getPadBody(page);
+    await writeToPad(page, 'MYTEXT');
+    const mine = body.locator('span').filter({hasText: 'MYTEXT'}).first();
+    expect(await tooltipTextAfterHover(page, mine)).not.toBeNull();
+  });
+
+  test('shows no tooltip over text the system author holds', async ({page}) => {
+    // The default pad content is attributed to `a.etherpad-system` — nobody
+    // wrote it, and core ships no author record for that id, so the lookup
+    // used to fall through to "Unknown Author" (ether/etherpad#8044).
+    const body = await getPadBody(page);
+    const defaultText = body.locator('span.author-a-etherpadz45zsystem').first();
+    await expect(defaultText).toBeAttached();
+    expect(await tooltipTextAfterHover(page, defaultText)).toBeNull();
   });
 });
