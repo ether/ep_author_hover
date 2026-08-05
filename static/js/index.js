@@ -21,6 +21,15 @@ exports.handleClientMessage_CLIENT_MESSAGE = authorHoverToggle.handleClientMessa
 
 let timer = 0;
 
+// Etherpad attributes inserts to this reserved id when no real author made
+// them: the default pad content written on pad creation, HTTP API
+// setText/appendText/setHTML calls without an authorId, server-side imports.
+// It is changeset bookkeeping rather than a contributor — core deliberately
+// keeps it out of historicalAuthorData and listAuthorsOfPad — so hovering
+// such text fell through to "Unknown Author". Nobody wrote it, so show
+// nothing at all. See ether/etherpad#8044.
+const SYSTEM_AUTHOR_ID = 'a.etherpad-system';
+
 const showAuthor = {
   enable: () => {
     $('iframe[name="ace_outer"]').contents().find('iframe')
@@ -47,7 +56,13 @@ const showAuthor = {
       if (!authorTarget) { return; } // We might not be over a valid target
       const authorId = showAuthor.authorIdFromClass(authorTarget.className); // Get the authorId
       if (!authorId) { return; } // Default text isn't shown
+      // Clear any still-visible tooltip from the previous hover BEFORE the
+      // system-author bail-out below: tooltips linger for ~1.2s while they
+      // fade, so returning early without destroying would leave the previous
+      // author's label on screen while the pointer sits over text nobody
+      // wrote.
       showAuthor.destroy(); // Destroy existing
+      if (authorId === SYSTEM_AUTHOR_ID) { return; } // Not written by anyone
       const authorNameAndColor =
           showAuthor.authorNameAndColorFromAuthorId(authorId);
       showAuthor.draw(span, authorNameAndColor.name, authorNameAndColor.color);
