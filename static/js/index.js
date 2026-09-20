@@ -3,7 +3,6 @@
 // Sub-path import keeps the client bundle clean — the top-level
 // `ep_plugin_helpers` index pulls in server-only modules.
 const {padToggle} = require('ep_plugin_helpers/pad-toggle');
-import html10n from 'ep_etherpad-lite/static/js/vendors/html10n';
 
 // Same config as the server-side instance — must agree on pluginName,
 // settingId, l10nId, and defaultLabel so checkbox ids and clientVars line up.
